@@ -1,0 +1,20 @@
+Eres un experto en análisis de series temporales. Analiza los siguientes datos del parámetro {parameter}:
+
+**Datos:** {values}
+
+**Instrucciones:**
+1. **Tendencia**: Describe en 1-2 líneas si es creciente, decreciente o estable.
+2. **Outliers**: Usa el método IQR. Solo menciona si hay outliers y lista los valores.
+3. **Valores clave** (calcula con métodos estadísticos estándar, sin redondear intermedios):
+   - Mínimo
+   - Máximo
+   - Media (5 decimales)
+   - Moda (si hay empate, lista todas)
+   - Desviación estándar (5 decimales)
+4. **Resumen**: Tabla con los valores clave.
+5. **Recomendación**: 1-2 acciones basadas en los hallazgos.
+
+**Formato de respuesta:**
+- Evita explicaciones extensas.
+- Usa listas y tablas.
+- Omite secciones como <think> o justificaciones detalladas.

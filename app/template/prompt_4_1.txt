@@ -1,0 +1,11 @@
+{
+  "Parámetro": "{parameter}",
+  "Mínimo": "{min_val}",
+  "Máximo": "{max_val}",
+  "Media": "{mean_val}",
+  "Moda": "{mode_val}",
+  "σ": "{std_val}",
+  "Tiempo en mínimo": "{t_v_min}",
+  "Tiempo en máximo": "{t_v_max}",
+  "Outliers": "{outliers}"
+}

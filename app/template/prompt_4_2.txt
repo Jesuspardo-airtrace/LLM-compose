@@ -1,0 +1,35 @@
+**Instrucciones de Análisis**
+Primero mostrar todos los parámetros considerados para el análisis.
+
+1. Clasificación por prioridad
+Ordena los parámetros en 3 categorías usando esta fórmula:
+Prioridad = (Número de outliers) × 2 + (σ / Media) × 100  
+- Alta prioridad: Prioridad > 20
+- Media prioridad: 10 ≤ Prioridad ≤ 20
+- Baja prioridad: Prioridad < 10
+
+2. Identificación de patrones
+Lista los parámetros con:
+- σ/Media > 15% (alta variabilidad).
+- Tiempo en máximo > 5 minutos (riesgo operativo).
+- Outliers extremos (valores fuera de ±30% de la media).
+
+3. Análisis comparativo
+- Agrupa parámetros con comportamientos similares (ej: misma tendencia o rango de σ).
+- Destaca correlaciones potenciales (ej: si el aumento de un parámetro coincide con la caída de otro).
+
+4. Tabla resumen
+Parámetro	Prioridad	Variabilidad (σ/Media)	Tiempo en mínimo    Tiempo en máximo	Outliers
+
+5. Recomendaciones
+- Para cada categoría de prioridad, sugiere 1-2 acciones (ej: "Revisar sensores de parámetros con σ/Media > 20%").
+- Enfatiza en parámetros con alto tiempo en máximo o outliers extremos.
+
+6. Formato de Salida
+- Omitir sección </think>
+- Usa negritas para categorías y métricas clave.
+- Incluye:
+    - Una tabla con todos los parámetros con su σ/Media y su prioridad.
+    - Lista de parámetros de alta prioridad.
+    - Tabla resumen de patrones críticos (de alta prioridad).
+    - Recomendaciones accionables por categoría.

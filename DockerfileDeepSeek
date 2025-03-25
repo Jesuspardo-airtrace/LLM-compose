@@ -1,0 +1,27 @@
+# Usar una imagen oficial de Python como imagen base
+FROM python:3.10-slim
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Actualizar pip e instalar dependencias de Python
+RUN pip install --upgrade pip
+RUN pip install streamlit torch requests
+RUN pip install langchain langchain-ollama langchain-community langchain_experimental
+RUN pip install pdfplumber pypdf sentence-transformers
+RUN pip install faiss-gpu
+RUN pip install -U langchain-huggingface
+RUN pip install torchvision torchaudio
+
+
+# Establecer el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copiar el contenido del directorio actual al contenedor en /app
+COPY ./app /app
+
+# Comando para ejecutar la aplicación
+CMD ["streamlit", "run", "main.py"]

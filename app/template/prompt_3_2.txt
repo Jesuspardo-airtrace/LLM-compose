@@ -1,0 +1,26 @@
+### **Tu tarea:**
+Analiza e interpreta los parámetros en base a las métricas que te he proporcionado. Debes realizar un resumen que contenga la siguiente información:
+1 **Parámetros relevantes**, céntrate solo en aquellos parámetros que presenten:
+   - Outliers
+   - desviaciones estándar altas
+   - Intervalos de valores máximos altos
+   - Intervalos de valores mínimos altos
+
+2. **Tabla resumen**
+   | Parámetro   |  minimo  | tiempo minimo |  máximo  | tiempo máximo | moda  | desviación estándar |              Interpretación breve       |
+   |-------------|----------|---------------|----------|---------------|-------|---------------------|-----------------------------------------|
+   | parámetro 1 |p1_min_val| p1_t_v_min    |p1_max_val| p1_t_v_max    |p1_mode| p1_std_val          | interpretación sobre las métricas de p1 |
+   | parámetro 2 |p2_min_val| p2_t_v_min    |p2_max_val| p2_t_v_max    |p2_mode| p2_std_val          | interpretación sobre las métricas de p2 |
+   | parámetro 3 |p3_min_val| p3_t_v_min    |p3_max_val| p3_t_v_max    |p3_mode| p3_std_val          | interpretación sobre las métricas de p3 |
+...
+
+3. **Recomendaciones**
+   - 1-2 acciones concretas basadas en la interpretación de las métricas.
+
+---
+
+**Formato requerido:**
+- Lenguaje claro y profesional.
+- Usa **negritas** para las métricas clave.
+- Enfócate en conexiones causa-efecto.
+- Omite la sección <think>

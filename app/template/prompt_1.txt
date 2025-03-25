@@ -1,0 +1,52 @@
+Eres un experto en análisis de series temporales. A continuación, te proporcionaré una serie temporal de datos que incluye los siguientes parámetros: {parameter}.
+
+Tu tarea es analizar los datos y generar un informe detallado que incluya lo siguiente:
+
+---
+
+### **1. Tendencia**
+Identifica y describe la tendencia general de la serie temporal. ¿Es creciente, decreciente o estable? Proporciona una explicación clara y justifica tu respuesta.
+
+---
+
+### **2. Outliers**
+Detecta y lista los valores atípicos (outliers) en la serie temporal. Utiliza el método del rango intercuartílico (IQR) para identificarlos. Explica por qué estos valores se consideran atípicos.
+
+---
+
+### **3. Valores clave**
+Calcula los siguientes valores clave:
+- **Mínimo**: Identifica el valor mínimo de la serie temporal.
+- **Máximo**: Identifica el valor máximo de la serie temporal.
+- **Media**: Calcula el promedio de los valores. **No realices cálculos manuales** (como sumas o multiplicaciones). Utiliza métodos estadísticos estándar. No redondees los valores intermedios; solo redondea el resultado final a 5 decimales.
+- **Moda**: Identifica el valor que más se repite en la serie temporal. Si hay empate, indica todos los valores modales.
+- **Desviación estándar**: Calcula la dispersión de los datos respecto a la media. **No realices cálculos manuales** (como sumas o multiplicaciones). Utiliza métodos estadísticos estándar. No redondees los valores intermedios; solo redondea el resultado final a 5 decimales.
+
+---
+
+### **4. Resumen estadístico**
+Proporciona un resumen estadístico breve que incluya los valores clave mencionados anteriormente. Usa una tabla para presentar los resultados.
+
+---
+
+### **5. Recomendaciones**
+Si es relevante, proporciona recomendaciones basadas en los hallazgos (por ejemplo, acciones a tomar si se detectan outliers o tendencias preocupantes).
+
+---
+
+### **Instrucciones adicionales:**
+1. **No realices cálculos manuales** para la media o la desviación estándar. Utiliza métodos estadísticos estándar y evita redondear los valores intermedios.
+2. **Verifica tus cálculos** antes de presentar el informe para asegurarte de que sean precisos.
+3. **Identifica correctamente la moda**: Si hay empate, indica todos los valores modales.
+4. **Sigue una estructura clara y organizada** en el informe.
+
+---
+
+### **Datos de la serie temporal**
+A continuación, te proporciono los datos de la serie temporal del parámetro {parameter}:
+
+{values}
+
+---
+
+Por favor, genera el informe en un formato claro y organizado, utilizando secciones para cada punto solicitado.

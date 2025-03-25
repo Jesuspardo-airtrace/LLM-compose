@@ -1,0 +1,724 @@
+Eres un experto en análisis de series temporales y diagnóstico técnico. A continuación, te proporcionaré una lista de parámetros con sus métricas precalculadas. Tu tarea es analizarlos e identificar patrones críticos.
+**Lista de parámetros**:  ['PUERTO.PLC11.CLORO_PLC11', 'PUERTO.PLC11.TURBIDEZ_PLC11', 'PUERTO.PLC12.OZONO_POWER_CONVERTER', 'PUERTO.PLC1A.CNSG_Q_SAL_BALSON', 'PUERTO.PLC1B.Q_ENT_PLANTA', 'PUERTO.PLC1B.VRE_REGU', 'PUERTO.PLC1B.VRE_REGU_1', 'PUERTO.PLC2.Q_DEC1_VALOR', 'PUERTO.PLC2.Q_DEC2_VALOR', 'PUERTO.PLC2.Q_DEC3_VALOR', 'PUERTO.PLC3.CLORO_DECL1', 'PUERTO.PLC3.MRAD1_TELEM', 'PUERTO.PLC3.MRAD2_TELEM', 'PUERTO.PLC3.MRAD3_TELEM', 'PUERTO.PLC3.MRTD1_TELEM', 'PUERTO.PLC3.MRTD2_TELEM', 'PUERTO.PLC3.MRTD3_TELEM', 'PUERTO.PLC3.PHL1', 'PUERTO.PLC3.PH_PLC2', 'PUERTO.PLC3.TURBIDEZL1', 'PUERTO.PLC3.VPFD1_TELEM', 'PUERTO.PLC3.VPFD2_TELEM', 'PUERTO.PLC3.VPFD3_TELEM', 'PUERTO.PLC4.CONDUCTIVIDAD', 'PUERTO.PLC5A.F1_PASO_0', 'PUERTO.PLC5A.F1_PASO_1', 'PUERTO.PLC5A.F2_PASO_0', 'PUERTO.PLC5A.F2_PASO_1', 'PUERTO.PLC5A.F3_PASO_0', 'PUERTO.PLC5A.F3_PASO_1', 'PUERTO.PLC5A.F4_PASO_0', 'PUERTO.PLC5A.F4_PASO_1', 'PUERTO.PLC5A.F5_PASO_0', 'PUERTO.PLC5A.F5_PASO_1', 'PUERTO.PLC5A.F6_PASO_0', 'PUERTO.PLC5A.F6_PASO_1', 'PUERTO.PLC5B.F10_PASO_0', 'PUERTO.PLC5B.F10_PASO_1', 'PUERTO.PLC5B.F11_PASO_0', 'PUERTO.PLC5B.F11_PASO_1', 'PUERTO.PLC5B.F12_PASO_0', 'PUERTO.PLC5B.F12_PASO_1', 'PUERTO.PLC5B.F7_PASO_0', 'PUERTO.PLC5B.F7_PASO_1', 'PUERTO.PLC5B.F8_PASO_0', 'PUERTO.PLC5B.F8_PASO_1', 'PUERTO.PLC5B.F9_PASO_0', 'PUERTO.PLC5B.F9_PASO_1', 'PUERTO.PLC7.TURBIDEZ_PLC2', 'PUERTO.PLC9.DOSIFICACION_CLORO_POST', 'PUERTO.PLC9.DOSIFICACION_CLORO_PRE']
+Cada parámetro incluye:  
+1. Nombre 
+2. Métricas: 
+ - Mínimo 
+ - Máximo 
+ - Media 
+ - Moda 
+ - Desviación estándar (σ) 
+ - Tiempo en torno al mínimo (min) 
+ - Tiempo en torno al máximo (min) 
+ - Outliers detectados 
+{
+  "parameter": "PUERTO.PLC11.CLORO_PLC11",
+  "min_val": 3.47135,
+  "t_v_min": 2.66667,
+  "max_val": 7.97714,
+  "t_v_max": 0.13333,
+  "mean_val": 5.1617,
+  "mode_val": 5.48582,
+  "std_val": 0.78811,
+  "outliers": [
+    7.97714,
+    3.47714,
+    3.47569,
+    3.47714,
+    3.47569,
+    3.47569,
+    3.47569,
+    3.47569,
+    3.47569,
+    3.47425,
+    3.47425,
+    3.47425,
+    3.47425,
+    3.47425,
+    3.47425,
+    3.47425,
+    3.47425,
+    3.4728,
+    3.4728,
+    3.4728,
+    3.47135
+  ]
+}
+{
+  "parameter": "PUERTO.PLC11.TURBIDEZ_PLC11",
+  "min_val": 0.11863,
+  "t_v_min": 2.4,
+  "max_val": 0.14757,
+  "t_v_max": 13.6,
+  "mean_val": 0.13998,
+  "mode_val": 0.14757,
+  "std_val": 0.00845,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC12.OZONO_POWER_CONVERTER",
+  "min_val": 19.71065,
+  "t_v_min": 12.13333,
+  "max_val": 22.71991,
+  "t_v_max": 7.73333,
+  "mean_val": 20.79085,
+  "mode_val": 20.23727,
+  "std_val": 0.85174,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC1A.CNSG_Q_SAL_BALSON",
+  "min_val": 1020.0,
+  "t_v_min": 2.4,
+  "max_val": 2220.0,
+  "t_v_max": 0.13333,
+  "mean_val": 1450.83333,
+  "mode_val": 1520.0,
+  "std_val": 191.83145,
+  "outliers": [
+    2220.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0,
+    1020.0
+  ]
+}
+{
+  "parameter": "PUERTO.PLC1B.Q_ENT_PLANTA",
+  "min_val": 1109.66431,
+  "t_v_min": 15.86667,
+  "max_val": 1254.34021,
+  "t_v_max": 15.46667,
+  "mean_val": 1158.09461,
+  "mode_val": 1145.83337,
+  "std_val": 17.81235,
+  "outliers": [
+    1109.66431,
+    1213.83105,
+    1254.34021
+  ]
+}
+{
+  "parameter": "PUERTO.PLC1B.VRE_REGU",
+  "min_val": 24.0,
+  "t_v_min": 16.0,
+  "max_val": 24.0,
+  "t_v_max": 16.0,
+  "mean_val": 24.0,
+  "mode_val": 24.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC1B.VRE_REGU_1",
+  "min_val": 24.0,
+  "t_v_min": 16.0,
+  "max_val": 24.0,
+  "t_v_max": 16.0,
+  "mean_val": 24.0,
+  "mode_val": 24.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC2.Q_DEC1_VALOR",
+  "min_val": 541.62811,
+  "t_v_min": 16.0,
+  "max_val": 593.81927,
+  "t_v_max": 16.0,
+  "mean_val": 570.0143,
+  "mode_val": 586.86041,
+  "std_val": 16.25929,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC2.Q_DEC2_VALOR",
+  "min_val": 2.31961,
+  "t_v_min": 16.0,
+  "max_val": 2.31961,
+  "t_v_max": 16.0,
+  "mean_val": 2.31961,
+  "mode_val": 2.31961,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC2.Q_DEC3_VALOR",
+  "min_val": 554.38593,
+  "t_v_min": 16.0,
+  "max_val": 604.25751,
+  "t_v_max": 16.0,
+  "mean_val": 582.27922,
+  "mode_val": 571.78302,
+  "std_val": 16.28746,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.CLORO_DECL1",
+  "min_val": 0.05324,
+  "t_v_min": 0.66667,
+  "max_val": 0.08218,
+  "t_v_max": 3.86667,
+  "mean_val": 0.0688,
+  "mode_val": 0.07407,
+  "std_val": 0.00581,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.MRAD1_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.MRAD2_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.MRAD3_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.MRTD1_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.MRTD2_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.MRTD3_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.PHL1",
+  "min_val": 7.83681,
+  "t_v_min": 16.0,
+  "max_val": 7.8397,
+  "t_v_max": 16.0,
+  "mean_val": 7.83686,
+  "mode_val": 7.83681,
+  "std_val": 0.00037,
+  "outliers": [
+    7.8397,
+    7.8397
+  ]
+}
+{
+  "parameter": "PUERTO.PLC3.PH_PLC2",
+  "min_val": 6.61458,
+  "t_v_min": 16.0,
+  "max_val": 6.62616,
+  "t_v_max": 16.0,
+  "mean_val": 6.61955,
+  "mode_val": 6.62037,
+  "std_val": 0.00215,
+  "outliers": [
+    6.62616,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458,
+    6.61458
+  ]
+}
+{
+  "parameter": "PUERTO.PLC3.TURBIDEZL1",
+  "min_val": 5.20255,
+  "t_v_min": 2.8,
+  "max_val": 25.20255,
+  "t_v_max": 0.13333,
+  "mean_val": 17.62013,
+  "mode_val": 20.20255,
+  "std_val": 5.73585,
+  "outliers": [
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    20.20544,
+    25.20255,
+    5.20255,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544,
+    5.20544
+  ]
+}
+{
+  "parameter": "PUERTO.PLC3.VPFD1_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.VPFD2_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC3.VPFD3_TELEM",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC4.CONDUCTIVIDAD",
+  "min_val": 675.9259,
+  "t_v_min": 16.0,
+  "max_val": 681.71301,
+  "t_v_max": 16.0,
+  "mean_val": 678.88696,
+  "mode_val": 679.39813,
+  "std_val": 1.6558,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F1_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F1_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F2_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F2_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F3_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F3_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F4_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F4_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F5_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F5_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F6_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5A.F6_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F10_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F10_PASO_1",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F11_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F11_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F12_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F12_PASO_1",
+  "min_val": 1.0,
+  "t_v_min": 16.0,
+  "max_val": 1.0,
+  "t_v_max": 16.0,
+  "mean_val": 1.0,
+  "mode_val": 1.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F7_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F7_PASO_1",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F8_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F8_PASO_1",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F9_PASO_0",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC5B.F9_PASO_1",
+  "min_val": 0.0,
+  "t_v_min": 16.0,
+  "max_val": 0.0,
+  "t_v_max": 16.0,
+  "mean_val": 0.0,
+  "mode_val": 0.0,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC7.TURBIDEZ_PLC2",
+  "min_val": 2.38715,
+  "t_v_min": 15.33333,
+  "max_val": 3.18287,
+  "t_v_max": 0.66667,
+  "mean_val": 2.4203,
+  "mode_val": 2.38715,
+  "std_val": 0.15901,
+  "outliers": [
+    3.18287,
+    3.18287,
+    3.18287,
+    3.18287,
+    3.18287
+  ]
+}
+{
+  "parameter": "PUERTO.PLC9.DOSIFICACION_CLORO_POST",
+  "min_val": 1.2,
+  "t_v_min": 16.0,
+  "max_val": 1.2,
+  "t_v_max": 16.0,
+  "mean_val": 1.2,
+  "mode_val": 1.2,
+  "std_val": 0.0,
+  "outliers": []
+}
+{
+  "parameter": "PUERTO.PLC9.DOSIFICACION_CLORO_PRE",
+  "min_val": 2.1,
+  "t_v_min": 16.0,
+  "max_val": 2.1,
+  "t_v_max": 16.0,
+  "mean_val": 2.1,
+  "mode_val": 2.1,
+  "std_val": 0.0,
+  "outliers": []
+}**Instrucciones de Análisis**
+Primero mostrar todos los parámetros considerados para el análisis.
+
+1. Clasificación por prioridad
+Ordena los parámetros en 3 categorías usando esta fórmula:
+Prioridad = (Número de outliers) × 2 + (σ / Media) × 100  
+- Alta prioridad: Prioridad > 20
+- Media prioridad: 10 ≤ Prioridad ≤ 20
+- Baja prioridad: Prioridad < 10
+
+2. Identificación de patrones
+Lista los parámetros con:
+- σ/Media > 15% (alta variabilidad).
+- Tiempo en máximo > 5 minutos (riesgo operativo).
+- Outliers extremos (valores fuera de ±30% de la media).
+
+3. Análisis comparativo
+- Agrupa parámetros con comportamientos similares (ej: misma tendencia o rango de σ).
+- Destaca correlaciones potenciales (ej: si el aumento de un parámetro coincide con la caída de otro).
+
+4. Tabla resumen
+Parámetro	Prioridad	Variabilidad (σ/Media)	Tiempo en mínimo    Tiempo en máximo	Outliers
+
+5. Recomendaciones
+- Para cada categoría de prioridad, sugiere 1-2 acciones (ej: "Revisar sensores de parámetros con σ/Media > 20%").
+- Enfatiza en parámetros con alto tiempo en máximo o outliers extremos.
+
+6. Formato de Salida
+- Omitir sección </think>
+- Usa negritas para categorías y métricas clave.
+- Incluye:
+    - Una tabla con todos los parámetros con su σ/Media y su prioridad.
+    - Lista de parámetros de alta prioridad.
+    - Tabla resumen de patrones críticos (de alta prioridad).
+    - Recomendaciones accionables por categoría.

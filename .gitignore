@@ -1,0 +1,4 @@
+# Ignore directories
+app/model/
+app/Credenciales.txt
+

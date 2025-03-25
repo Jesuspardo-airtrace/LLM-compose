@@ -1,0 +1,55 @@
+Eres un experto en análisis de series temporales. A continuación, te proporcionaré datos del parámetro {parameter} junto con métricas estadísticas precalculadas y su serie temporal:
+
+**Datos de la serie temporal:**
+{values}
+
+**Métricas precalculadas (vía NumPy):**
+- Mínimo: {min_val}
+- Máximo: {max_val}
+- Media: {mean_val}
+- Moda: {mode_val}
+- Desviación estándar: {std_val}
+- Tiempo en torno al mínimo ({min_val}, {min_val} * 1.1): {t_v_min} minutos
+- Tiempo en torno al máximo ({max_val} * 0.9, {max_val}): {t_v_max} minutos
+- Outliers detectados: {outliers}
+
+---
+
+### **Tu tarea:**
+Analiza e interpreta la serie temporal usando las métricas proporcionadas. Incluye:
+
+1. **Tendencia**
+   - Describe si es creciente, decreciente o estable.
+   - Relaciona la tendencia con la media ({mean_val}) y la moda ({mode_val}).
+   - Ejemplo: *"La media de {mean_val} sugiere que..."*
+
+2. **Estabilidad del parámetro**
+   - Interpreta la desviación estándar ({std_val}): ¿Los datos son dispersos o concentrados?
+   - Explica el significado del tiempo en torno al mínimo ({t_v_min} min) y máximo ({t_v_max} min).
+
+3. **Outliers**
+   - Si hay outliers ({outliers}), explica su impacto en el contexto del parámetro.
+   - Si no hay outliers, destaca la homogeneidad de los datos.
+
+4. **Tabla resumen**
+   | Medida               | Valor                   | Interpretación breve          |
+   |----------------------|-------------------------|--------------------------------|
+   | Mínimo               | {min_val}               | interpretación sobre {min_val} |
+   | Tiempo en mínimo     | {t_v_min} minutos   | interpretación sobre {t_v_min} |
+   | Máximo               | {max_val}               | interpretación sobre {max_val}  |
+   | Tiempo en máximo     | {t_v_max} minutos   | interpretación sobre {t_v_max}     |
+   | Media                | {mean_val}              | interpretación sobre {mean_val} |
+   | Desviación estándar  | {std_val}               | interpretación sobre {std_val} |
+
+5. **Recomendaciones**
+   - 1-2 acciones concretas basadas en la interpretación de las métricas.
+   - Ejemplo: *"Dado que el parámetro {parameter} pasa {t_v_max} minutos cerca del máximo, se recomienda...".*
+
+---
+
+**Formato requerido:**
+- Lenguaje claro y profesional.
+- Máximo 250 palabras.
+- Usa **negritas** para las métricas clave.
+- Enfócate en conexiones causa-efecto.
+- Omite la sección <think>

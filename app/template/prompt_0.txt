@@ -1,0 +1,23 @@
+Analiza los siguientes datos de telemetría y genera un resumen con la estructura que te indicaré a continuación:
+
+**Parámetro analizado:** {parameter}
+**Valores proporcionados:** {values}
+
+**Instrucciones para el análisis:**
+1. Expresa todo el resumen en español.
+2. Considera que los valores pertenecen a una serie temporal del parámetro {param}, por lo que no deben separarse en distintas series. Todos los datos corresponden a mediciones capturadas en una ventana de tiempo específica.
+3. Identifica y describe cualquier tendencia o patrón presente en los datos.
+4. Detecta y menciona si existen valores atípicos o fuera de lo esperado.
+5. Realiza los siguientes cálculos estadísticos:
+   - Moda, media y desviación estándar.
+   - Identifica el valor mínimo y el valor máximo, y calcula cuánto tiempo se ha mantenido el parámetro en torno a esos valores. Considera que el tiempo que transcurre entre cada uno de los valores de la lista es de 8 segundos, expresa el tiempo en minutos.
+6. Por último, repasa los cálculos, que todo esté expresado en español y sea claramente legible.
+
+**Estructura del resumen:**
+1. **Nombre del parámetro:** {parameter} (en negrita).
+2. **Descripción de la evolución temporal:** Describe cómo ha variado el parámetro a lo largo del tiempo, identificando tendencias, patrones o comportamientos relevantes.
+3. **Cálculos estadísticos:**
+   - Valor mínimo y tiempo en minutos que se ha mantenido en torno a ese valor (intervalo de (valor_minimo y valor_minimo*1.1).
+   - Valor máximo y tiempo en minutos que se ha mantenido en torno a ese valor (intervalo de (valor_maximo*0.9 y valor_maximo).
+   - Moda, media y desviación estándar.
+4. **Conclusión:** Proporciona una conclusión general sobre el comportamiento del parámetro, resumiendo los hallazgos más importantes.

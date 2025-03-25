@@ -1,0 +1,27 @@
+FROM nvidia/cuda:11.8.0-base-ubuntu20.04
+
+# Instalar dependencias del sistema: git, python3 y python3-pip
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar PyTorch (asegúrate de que instale la versión correcta para GPU en tu entorno)
+RUN pip3 install --no-cache-dir torch
+
+# Instalar transformers, accelerate (>= 0.26.0) y datasets.
+RUN pip3 install --no-cache-dir transformers[torch] "accelerate>=0.26.0" datasets
+
+# Establecer el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copiar el contenido de tu proyecto al contenedor
+COPY . /app
+
+# Comando por defecto para ejecutar tu script
+CMD ["python3", "LLM_finetuning.py"]
+
+
+# docker build -f DockerfileLLMTrain . --tag llm-finetuning:v1
+# docker run --rm --gpus all -v /home/jesuspardo/LLM-COMPOSE/app:/app -e HUGGINGFACE_HUB_TOKEN=X llm-finetuning:v1

@@ -1,0 +1,11 @@
+**Parámetro:** {parameter}
+
+**Métricas precalculadas (vía NumPy):**
+- Mínimo: {min_val}
+- Máximo: {max_val}
+- Media: {mean_val}
+- Moda: {mode_val}
+- Desviación estándar: {std_val}
+- Tiempo en torno al mínimo ({min_val}, {min_val} * 1.1): {t_v_min} minutos
+- Tiempo en torno al máximo ({max_val} * 0.9, {max_val}): {t_v_max} minutos
+- Outliers detectados: {outliers}

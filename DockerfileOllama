@@ -1,0 +1,22 @@
+FROM ubuntu:20.04
+
+# Instalar dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    curl \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar Ollama
+RUN curl -sSL https://ollama.com/install.sh | bash
+
+# Copiar el script de descarga de modelo
+COPY download_llm.sh /usr/local/bin/download_llm.sh
+
+# Dar permisos de ejecución al script
+RUN chmod +x /usr/local/bin/download_llm.sh
+
+# Ejecutar el script para descargar el modelo si es necesario
+RUN /usr/local/bin/download_llm.sh
+
+# Ejecutar Ollama para que se inicie
+CMD ["bash", "-c", "ollama serve && /usr/local/bin/download_llm.sh"]

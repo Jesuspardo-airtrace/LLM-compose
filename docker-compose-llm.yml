@@ -1,0 +1,48 @@
+services:
+  # Servicio de LLM (DeepSeek)
+  deepSeek-service:
+    build:
+      context: .
+      dockerfile: DockerfileDeepSeek
+    image: flowguard-deepseek:v1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+    environment:
+      ROOT: "http://172.25.0.2:9090"  # Dirección de ThingsBoard
+    volumes:
+      - ./app:/app                    # Mapea el código fuente a la carpeta dentro del contenedor
+    networks:
+      iot_network:
+        ipv4_address: 172.25.0.7      # Asigna una IP estática en la red
+    restart: "no"                     # Evita que se reinicie automáticamente
+    user: "0:0"                       # Ejecuta el contenedor como root
+    ports:
+      - "8501:8501"
+
+  # Servicio de Ollama
+  ollama-service:
+    build:
+      context: .
+      dockerfile: DockerfileOllama
+    networks:
+      - iot_network
+    environment:
+      - OLLAMA_HOST=http://0.0.0.0:11435
+    volumes:
+      - pdfs_data:/app/pdfs_data  # Persistencia de datos si es necesario
+    ports:
+      - "11435:11435"  # Exponer el puerto de Ollama
+    restart: "no"  # Evita que se reinicie automáticamente
+
+networks:
+  iot_network:
+    external: true                       # Usa la red externa que ya está definida en tu otro Docker Compose
+    name: flowguard-compose_iot_network  # Usa el nombre de la red que ya existe
+
+volumes:
+  pdfs_data:
