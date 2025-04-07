@@ -1,2 +1,5 @@
 # Ignore directories
+app/DATA
 app/model/
+app/model_trained
+app/pdfs_data

@@ -1,0 +1,18 @@
+services:
+  llm-inference-api:
+    image: llm-inference:v1
+    build:
+      context: .
+      dockerfile: DockerfileLLMInference
+    container_name: llm-inference
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    restart: unless-stopped
+    networks:
+      - llm_network
+
+networks:
+  llm_network:
+    name: llm_network

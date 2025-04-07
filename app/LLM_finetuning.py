@@ -9,11 +9,18 @@ from transformers import (
     TrainingArguments,
     Trainer,
     DataCollatorForLanguageModeling,
-    TrainerCallback
+    TrainerCallback,
+    BitsAndBytesConfig
 )
 from datasets import load_dataset
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+
+from huggingface_hub import login, snapshot_download
 
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = "expandable_segments:True"
+token = os.environ.get("HUGGINGFACE_HUB_TOKEN")
+print("¿Token presente?:", bool(token))
+login(token=token)
 
 ###########################################
 # 1. Descargar o cargar el modelo base
@@ -22,103 +29,114 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = "expandable_segments:True"
 # Ejemplo para LLaMA-2 13B (modo chat):
 ##model_name = "meta-llama/Llama-2-13b-chat-hf"
 # Para Mistral 7B, podría ser algo como:
-#model_name = "mistralai/Mistral-7B-v0.1"
+##model_name = "mistralai/Mistral-7B-v0.1"
 # Ejemplo para Deepseek LLM 7B:
-model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+#model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+# 🆕 Modelo actualizado (DeepSeek V3)
+model_name = "deepseek-ai/DeepSeek-V3-8B-Base"
 model_name_0 = model_name.split('/')[-1].replace("-","_")
 
 # Define una carpeta local donde almacenar el modelo base
-base_model_dir = os.path.join("model", model_name.replace("/", "_"))
-
-token = os.environ.get("HUGGINGFACE_HUB_TOKEN")
+#base_model_dir = os.path.join("model", model_name.replace("/", "_"))
 
 # Modificación: Añadir parámetros específicos para Deepseek
-if "deepseek" in model_name.lower():
-    model_kwargs = {
-        "trust_remote_code": True,
-        "torch_dtype": torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
-    }
-    tokenizer_kwargs = {
-        "trust_remote_code": True
-    }
-else:
-    model_kwargs = {
-        "torch_dtype": torch.float16,
-        "trust_remote_code": True
-    }
-    tokenizer_kwargs = {}
-
-#quant_config = BitsAndBytesConfig(
-#    load_in_4bit=True,
-#    bnb_4bit_quant_type="nf4",
-#    bnb_4bit_compute_dtype=torch.bfloat16)
+model_kwargs = {
+    "trust_remote_code": True,
+    "torch_dtype": torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16,
+    "quantization_config": BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=torch.float16,
+    ),
+    "device_map": "auto"
+}
+tokenizer_kwargs = {"trust_remote_code": True}
 
 # Si la carpeta no existe, descarga el modelo (se guardará en cache_dir)
-if not os.path.exists(base_model_dir):
-    print(f"Descargando modelo base '{model_name}' a '{base_model_dir}'...")
-    if "deepseek" in model_name.lower() or "qwen" in model_name.lower():
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            trust_remote_code=True,
-            torch_dtype=torch.float16,
-            device_map="auto"
-            #quantization_config=quant_config
-        )
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_name,
-            trust_remote_code=True,
-            pad_token="<|endoftext|>"
-        )
-    else:
-        model = AutoModelForCausalLM.from_pretrained(model_name,
-                                                     cache_dir=base_model_dir,
-                                                     token=token,
-                                                     low_cpu_mem_usage=True,
-                                                     **model_kwargs)
-        tokenizer = AutoTokenizer.from_pretrained(model_name, cache_dir=base_model_dir, token=token,
-        **tokenizer_kwargs)
-else:
-    print(f"Cargando modelo base desde la carpeta local '{base_model_dir}'...")
-    if "deepseek" in model_name.lower() or "qwen" in model_name.lower():
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            trust_remote_code=True,
-            torch_dtype=torch.float16,
-            device_map="auto"
-            #quantization_config=quant_config
-        )
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_name,
-            trust_remote_code=True,
-            pad_token="<|endoftext|>"
-        )
-    else:
-        model = AutoModelForCausalLM.from_pretrained(
-            base_model_dir,
-            low_cpu_mem_usage=True,
-            **model_kwargs)
-        tokenizer = AutoTokenizer.from_pretrained(
-            base_model_dir,
-            **tokenizer_kwargs)
+#if not os.path.exists(base_model_dir):
+#    print(f"Descargando modelo base '{model_name}' a '{base_model_dir}'...")
+#    os.makedirs(base_model_dir, exist_ok=True)
 
-# Algunos modelos (como LLaMA-2) no tienen pad_token definido
+#    # Descarga el modelo en la carpeta indicada
+#    snapshot_download(
+#        repo_id=model_name,
+#        local_dir=base_model_dir,
+#        local_dir_use_symlinks=False  # Copia archivos reales, no enlaces simbólicos
+#    )
+#    # Cargar modelo y tokenizer desde la ruta local
+#    model = AutoModelForCausalLM.from_pretrained(
+#        base_model_dir,
+#        low_cpu_mem_usage=True,
+#        **model_kwargs
+#    )
+#    tokenizer = AutoTokenizer.from_pretrained(
+#        base_model_dir,
+#        **tokenizer_kwargs
+#    )
+#else:
+#    print(f"Cargando modelo base desde la carpeta local '{base_model_dir}'...")
+#    model = AutoModelForCausalLM.from_pretrained(
+#        base_model_dir,
+#        low_cpu_mem_usage=True,
+#        **model_kwargs)
+#    tokenizer = AutoTokenizer.from_pretrained(
+#        base_model_dir,
+#        **tokenizer_kwargs)
+
+# Para no descargar el modelo completo
+print(f"Descargando modelo base '{model_name}' (solo lo necesario para 4bit)...")
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    low_cpu_mem_usage=True,
+    **model_kwargs
+)
+tokenizer = AutoTokenizer.from_pretrained(
+    model_name,
+    **tokenizer_kwargs
+)
+
+# 🔐 Asegura que el tokenizer tenga un pad_token y pad_token_id válidos
 if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
+    if '[PAD]' in tokenizer.get_vocab():
+        tokenizer.pad_token = '[PAD]'
+    else:
+        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+        tokenizer.pad_token = '[PAD]'
+
+if tokenizer.pad_token_id is None or tokenizer.pad_token_id < 0:
+    tokenizer.pad_token_id = tokenizer.convert_tokens_to_ids('[PAD]')
 
 # Deepseek requiere ajustes especiales en el tokenizer
-if "deepseek" in model_name.lower():
-    tokenizer.eos_token = "<|endoftext|>"
-    tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.chat_template = "{% for message in messages %}{{message['content']}}{% endfor %}"
-elif tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
-
+#if "deepseek" in model_name.lower():
+#    tokenizer.chat_template = "{% for message in messages %}{{message['content']}}{% endfor %}"
+print("Pad token:", tokenizer.pad_token)
+print("Pad token ID:", tokenizer.pad_token_id)
+print("EOS token:", tokenizer.eos_token)
+print("EOS token ID:", tokenizer.eos_token_id)
 # Mover a dispositivo adecuado (GPU si está disponible)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-torch.cuda.empty_cache()
-model.to(device)
+#model.to(device)                           # No es necesario cuando se usa device_map="auto"
 model.eval()
-model.gradient_checkpointing_enable()      # permite recomputar algunos intermedios en lugar de almacenarlos
+#model.gradient_checkpointing_enable()      # Permite recomputar algunos intermedios en lugar de almacenarlos, pero
+                                            # no se recomienda usar gradient_checkpointing con modelos 4bit.
+torch.cuda.empty_cache()
+
+# Preparar el modelo para entrenamiento con PEFT (LoRA)
+model = prepare_model_for_kbit_training(model)
+
+lora_config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    target_modules=["q_proj", "v_proj"],  # módulos típicos en modelos tipo transformer
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM"
+)
+
+model = get_peft_model(model, lora_config)
+model.print_trainable_parameters()
 
 ###########################################
 # 2. Cargar el dataset de entrenamiento desde JSON
@@ -129,6 +147,9 @@ dataset = load_dataset("json", data_files={"data": json_path})
 dataset = dataset["data"].train_test_split(test_size=0.1, seed=42)
 train_dataset = dataset["train"]
 eval_dataset = dataset["test"]
+print(f"Número de ejemplos en el dataset de entrenamiento: {len(train_dataset)}")
+print(f"Número de ejemplos en el dataset de evaluación: {len(eval_dataset)}")
+
 
 ###########################################
 # 3. Tokenización
@@ -184,7 +205,7 @@ training_args = TrainingArguments(
     learning_rate=5e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
-    gradient_accumulation_steps=8,  # Simula un batch size mayor
+    gradient_accumulation_steps=5,  # Simula un batch size mayor
     num_train_epochs=epochs,
     logging_steps=10,
     save_strategy="epoch",
@@ -194,7 +215,7 @@ training_args = TrainingArguments(
     optim="adamw_torch_fused",
     load_best_model_at_end=True,
     report_to=["none"],  # Para evitar reportes a WandB u otros, opcional
-    gradient_checkpointing=True  # Ahorro de memoria crítico
+    gradient_checkpointing=False  # Ahorro de memoria crítico
 )
 
 #data_collator = DataCollatorWithPadding(tokenizer=tokenizer, pad_to_multiple_of=8)
@@ -222,6 +243,19 @@ trainer.train()
 ###########################################
 # 7. Guardar el modelo fine-tuneado
 ###########################################
-# El modelo se guarda automáticamente en el directorio output_dir,
-# pero aquí se puede realizar una copia o notificar.
+print("Fusionando (merge) los pesos del adaptador en el modelo base...")
+# Si el modelo cuenta con el método merge_and_unload() (disponible en PEFT), se fusionan los pesos
+if hasattr(model, "merge_and_unload"):
+    merged_model = model.merge_and_unload()
+    # Guardar el modelo fusionado en una subcarpeta 'merged_model' dentro del directorio de salida
+    merged_output_dir = os.path.join(output_dir, "model_merged")
+    merged_model.save_pretrained(merged_output_dir)
+    tokenizer.save_pretrained(merged_output_dir)
+    print(f"Modelo fusionado guardado en: {merged_output_dir}")
+else:
+    print("El modelo no soporta merge_and_unload(). Se recomienda revisar la versión de PEFT.")
+
+###########################################
+# 8. Fin del script
+###########################################
 print(f"Modelo fine-tuneado guardado en: {output_dir}")

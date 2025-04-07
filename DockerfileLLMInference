@@ -1,0 +1,36 @@
+# Usamos una imagen base que incluya CUDA para aprovechar GPU si está disponible.
+FROM nvidia/cuda:11.8.0-base-ubuntu20.04
+
+# Para evitar prompts interactivos de apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instalar dependencias del sistema y Python 3.9
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    python3.9 \
+    python3-pip \
+    python3.9-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Instalar dependencias de Python
+RUN pip3 install --upgrade pip && \
+    pip3 install --no-cache-dir fastapi uvicorn[standard] pandas torch transformers \
+    accelerate>=0.26.0 \
+    bitsandbytes>=0.43.2 \
+    datasets
+
+# Copiar el código fuente de la API al contenedor
+COPY app/ /app/
+
+# Exponer el puerto 8000 para la API
+EXPOSE 8000
+
+# Comando para ejecutar la API
+CMD ["uvicorn", "LLM_inference_api3:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+# sudo docker build -f DockerfileLLMInference . --tag llm-inference:v1
+# sudo docker run --rm --gpus all -p 8000:8000 -v /home/jesuspardo/LLM-COMPOSE/app:/app llm-inference:v1

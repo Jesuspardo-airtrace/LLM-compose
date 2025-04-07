@@ -1,27 +1,50 @@
+# Usa la imagen base de NVIDIA con CUDA 11.8 y Ubuntu 20.04
 FROM nvidia/cuda:11.8.0-base-ubuntu20.04
 
-# Instalar dependencias del sistema: git, python3 y python3-pip
+# Para evitar prompts interactivos de apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instala dependencias del sistema (git, python3, pip).
+# En este ejemplo instalamos python3.9 explícitamente,
+# pero puedes usar la versión que mejor te convenga.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
-    python3 \
+    python3.9 \
     python3-pip \
+    python3.9-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalar PyTorch (asegúrate de que instale la versión correcta para GPU en tu entorno)
-RUN pip3 install --no-cache-dir torch
+# Asegura que 'python3' apunte a python3.9
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
-# Instalar transformers, accelerate (>= 0.26.0) y datasets.
-RUN pip3 install --no-cache-dir transformers[torch] "accelerate>=0.26.0" datasets
+# Actualiza pip a la última versión
+RUN python3 -m pip install --no-cache-dir --upgrade pip
 
-# Establecer el directorio de trabajo en el contenedor
+# Instala la versión GPU de PyTorch desde el índice oficial de PyTorch
+# para cu118 (CUDA 11.8). Si deseas otra versión, ajusta aquí.
+RUN pip3 install --no-cache-dir torch --extra-index-url https://download.pytorch.org/whl/cu118
+
+# Instala Transformers, Accelerate, Datasets, 4bit y LoRA
+RUN pip3 install --no-cache-dir \
+    transformers[torch] \
+    accelerate>=0.26.0 \
+    datasets \
+    bitsandbytes \
+    peft \
+    scipy \
+    ninja \
+    trl
+
+# Establece el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copiar el contenido de tu proyecto al contenedor
-COPY . /app
+# Copia tu proyecto al contenedor
+COPY app/ /app/
 
-# Comando por defecto para ejecutar tu script
+# Comando por defecto para ejecutar tu script de fine-tuning
 CMD ["python3", "LLM_finetuning.py"]
+#CMD ["python3", "merge_model.py"]
 
-
-# docker build -f DockerfileLLMTrain . --tag llm-finetuning:v1
-# docker run --rm --gpus all -v /home/jesuspardo/LLM-COMPOSE/app:/app -e HUGGINGFACE_HUB_TOKEN=X llm-finetuning:v1
+# sudo docker build -f DockerfileLLMTrain . --tag llm-finetuning:v1
+# sudo docker run --rm --gpus all -v /home/jesuspardo/LLM-COMPOSE/app:/app -e HUGGINGFACE_HUB_TOKEN=X llm-finetuning:v1

@@ -1,4 +1,5 @@
 # Ignore directories
 app/model/
+app/model_trained
 app/Credenciales.txt
 
